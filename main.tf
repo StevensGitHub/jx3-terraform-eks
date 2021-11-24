@@ -1,11 +1,21 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "3.52.0"
+    }
+  }
+}
+
 provider "aws" {
   region  = var.region
   profile = var.profile
 }
 
 module "eks-jx" {
-  source               = "jenkins-x/eks-jx/aws?ref=v1.15.12"
-  version              = "1.15.47"
+  source               = "jenkins-x/eks-jx/aws"
+  version              = "1.15.37"
+  cluster_name         = var.cluster_name
   cluster_version      = var.cluster_version
   region               = var.region
   vault_user           = var.vault_user
